@@ -4,10 +4,7 @@
 
 package org.codehaus.plj.jdbc.stratch;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 /**
@@ -1238,4 +1235,47 @@ public class PLJJDBCMetaData implements DatabaseMetaData {
 		return conn.getIntFromConf("getSQLStateType");
 	}
 
+	public RowIdLifetime getRowIdLifetime() throws SQLException {
+		return null;
+	}
+
+	public ResultSet getSchemas(String catalog, String schemaPattern) throws SQLException {
+		return null;
+	}
+
+	public boolean supportsStoredFunctionsUsingCallSyntax() throws SQLException {
+		return false;
+	}
+
+	public boolean autoCommitFailureClosesAllResultSets() throws SQLException {
+		return false;
+	}
+
+	public ResultSet getClientInfoProperties() throws SQLException {
+		return null;
+	}
+
+	public ResultSet getFunctions(String catalog, String schemaPattern, String functionNamePattern) throws SQLException {
+		return null;
+	}
+
+	public ResultSet getFunctionColumns(String catalog, String schemaPattern, String functionNamePattern, String columnNamePattern) throws SQLException {
+		return null;
+	}
+
+	public ResultSet getPseudoColumns(String catalog, String schemaPattern, String tableNamePattern, String columnNamePattern) throws SQLException {
+		return null;
+	}
+
+	public boolean generatedKeyAlwaysReturned() throws SQLException {
+		return false;
+	}
+
+	public <T> T unwrap(Class<T> iface) throws SQLException {
+		return null;
+	}
+
+	public boolean isWrapperFor(Class<?> iface) throws SQLException {
+		return false;
+	}
 }

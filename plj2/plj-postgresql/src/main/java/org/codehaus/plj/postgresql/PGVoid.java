@@ -38,7 +38,7 @@ public class PGVoid extends AbstractPGField {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.Field#rdbmsType()
+	 * @see org.codehaus.plj.typemapping.Field#rdbmsType()
 	 */
 	public String rdbmsType() {
 		return "void";

@@ -131,4 +131,7 @@ public class PLJavaTriggerData implements TriggerData {
 		return (call.getReason() == TriggerCallRequest.TRIGGER_REASON_UPDATE);
 	}
 
+	public String getSchemaName() throws SQLException {
+		return null;
+	}
 }

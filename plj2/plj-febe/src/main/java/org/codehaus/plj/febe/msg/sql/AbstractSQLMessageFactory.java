@@ -14,7 +14,7 @@ import org.codehaus.plj.febe.msg.MessageFactory;
 abstract class AbstractSQLMessageFactory implements MessageFactory {
 
 	/*
-	 * See plpgj_message_sql_h to see it's pair. 
+	 * See plcodehaus.plj_message_sql_h to see it's pair.
 	 */
 	public static final int SQLTYPE_STATEMENT = 1;
 	public static final int SQLTYPE_CURSORCLOSE = 2;

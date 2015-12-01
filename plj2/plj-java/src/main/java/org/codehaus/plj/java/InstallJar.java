@@ -29,14 +29,14 @@ public class InstallJar extends BasicPrivilegedJSProc {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.jexec.PrivilegedJSProc#getName()
+	 * @see org.codehaus.plj.jexec.PrivilegedJSProc#getName()
 	 */
 	public String getName() {
 		return "install_jar";
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.jexec.PrivilegedJSProc#perform(org.pgj.messages.CallRequest)
+	 * @see org.codehaus.plj.jexec.PrivilegedJSProc#perform(org.codehaus.plj.messages.CallRequest)
 	 */
 	public Object perform(CallRequest call) throws Exception {
 		List params = call.getParams();

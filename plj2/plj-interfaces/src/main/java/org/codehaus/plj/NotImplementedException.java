@@ -4,7 +4,7 @@
 package org.codehaus.plj;
 
 /**
- * This method can be thrown from anywhere in PGJ telling that road is under construction.
+ * This method can be thrown from anywhere in codehaus.plj telling that road is under construction.
  * 
  * @author Laszlo Hornyak
  */

@@ -75,7 +75,7 @@ public class PGBool extends AbstractPGField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.typemapping.Field#rdbmsType()
+	 * @see org.codehaus.plj.typemapping.Field#rdbmsType()
 	 */
 	public String rdbmsType() {
 		return "bool";

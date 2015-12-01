@@ -22,16 +22,7 @@
   </ciManagement>
   
 	<repositories>
-		<repository>
-			<id>Ibiblio</id>
-			<name>Ibiblio</name>
-			<url>http://www.ibiblio.org/maven2</url>
-		</repository>
-		<repository>
-			<id>codehaus</id>
-			<name>codehaus</name>
-			<url>http://dist.codehaus.org/</url>
-		</repository>
+
 	</repositories>
 	<scm>
 		<connection>scm:cvs:pserver:anonymous@cvs.plj.codehaus.org:/cvs/plj/</connection>
@@ -39,6 +30,7 @@
 	</scm>
 	<modules>
 		<module>plj-interfaces</module>
+		<module>plj-tools</module>
 		<module>plj-java</module>
 		<module>plj-utils</module>
 		<module>plj-jdbc</module>

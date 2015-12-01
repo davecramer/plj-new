@@ -29,7 +29,7 @@ public interface Channel {
 	 * Receive a message from the RDMBS.
 	 * @param client		the client to get a message from.
 	 * @return				Message from the client.
-	 * @throws org.pgj.CommunicationException	if the communication failed (e.g. client is gone, cables are cut, etc...)
+	 * @throws org.codehaus.plj.CommunicationException	if the communication failed (e.g. client is gone, cables are cut, etc...)
 	 * @since 0.1
 	 */
 	public Message receiveFromRDBMS(Client client) throws CommunicationException, MappingException;
@@ -37,7 +37,7 @@ public interface Channel {
 	/**
 	 * Send a message to the RDBMS.
 	 * @param msg 			A message to the RDBMS. The client is stored in the param.
-	 * @throws org.pgj.CommunicationException	if the communication failed (e.g. client is gone, cables are cut, etc...)
+	 * @throws org.codehaus.plj.CommunicationException	if the communication failed (e.g. client is gone, cables are cut, etc...)
 	 * @since 0.1
 	 */
 	public void sendToRDBMS(Message msg) throws CommunicationException, MappingException;

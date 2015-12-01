@@ -43,7 +43,7 @@ public abstract class AbstractPGField implements Field {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.Field#isNull()
+	 * @see org.codehaus.plj.typemapping.Field#isNull()
 	 */
 	public boolean isNull() {
 		return raw == null;

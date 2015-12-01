@@ -54,7 +54,7 @@ final class FEBEClient implements Client {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Client#getChannel()
+	 * @see org.codehaus.plj.Client#getChannel()
 	 */
 	public Channel getChannel() {
 		return channel;
@@ -67,7 +67,7 @@ final class FEBEClient implements Client {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Client#getTypeMapper()
+	 * @see org.codehaus.plj.Client#getTypeMapper()
 	 */
 	public TypeMapper getTypeMapper() {
 		return typeMapper;

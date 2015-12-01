@@ -40,10 +40,10 @@ import org.codehaus.plj.typemapping.TypeMapper;
  * @version 0.1
  * 
  * @avalon.component name="FEBEChannel" lifestyle="singleton" 
- * @avalon.service type="org.pgj.Channel"
+ * @avalon.service type="org.codehaus.plj.Channel"
  * 
  * @dna.component
- * @dna.service type="org.pgj.Channel"
+ * @dna.service type="org.codehaus.plj.Channel"
  * @mx.component
  * 
  */
@@ -63,7 +63,7 @@ public class FEBEChannel
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Channel#getConnection(int)
+	 * @see org.codehaus.plj.Channel#getConnection(int)
 	 */
 	public Client getConnection(int timeout) {
 		logger.debug("waiting for incoming TCP connection");
@@ -86,7 +86,7 @@ public class FEBEChannel
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Channel#receiveFromRDBMS(org.pgj.Client)
+	 * @see org.codehaus.plj.Channel#receiveFromRDBMS(org.codehaus.plj.Client)
 	 */
 	public Message receiveFromRDBMS(Client client)
 			throws CommunicationException, MappingException {
@@ -135,7 +135,7 @@ public class FEBEChannel
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Channel#sendToRDBMS(org.pgj.messages.Message)
+	 * @see org.codehaus.plj.Channel#sendToRDBMS(org.codehaus.plj.messages.Message)
 	 */
 	public void sendToRDBMS(Message msg) throws CommunicationException, MappingException {
 		FEBEClient client = (FEBEClient) msg.getClient();

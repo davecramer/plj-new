@@ -128,7 +128,7 @@ public class TriggerCallRequestMessageFactory implements MessageFactory {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.plj.chanells.febe.msg.MessageFactory#sendMessage(org.pgj.messages.Message, org.plj.chanells.febe.core.PGStream)
+	 * @see org.plj.chanells.febe.msg.MessageFactory#sendMessage(org.codehaus.plj.messages.Message, org.plj.chanells.febe.core.PGStream)
 	 */
 	public void sendMessage(Message msg, PGStream stream) throws IOException,
 			MappingException {

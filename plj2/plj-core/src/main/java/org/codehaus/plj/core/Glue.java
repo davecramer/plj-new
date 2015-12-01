@@ -3,7 +3,7 @@ package org.codehaus.plj.core;
 
 import org.apache.log4j.Logger;
 import org.codehaus.plj.Channel;
-import org.codehaus.plj.JTAAdapter;
+import org.codehaus.plj.transactions.JTAAdapter;
 import org.codehaus.plj.Runner;
 import org.codehaus.plj.TriggerExecutor;
 
@@ -105,15 +105,15 @@ public class Glue {
 
 //	/**
 //	 * @see Serviceable#service(ServiceManager)
-//	 * @avalon.dependency key="channel" type="org.pgj.Channel"
-//	 * @avalon.dependency key="executor" type="org.pgj.Executor"
-//	 * @avalon.dependency key="triggerexecutor" type="org.pgj.TriggerExecutor" optional="true"
-//	 * @avalon.dependency key="jta-adapter" type="org.pgj.tools.transactions.JTAAdapter" optional="true"
+//	 * @avalon.dependency key="channel" type="org.codehaus.plj.Channel"
+//	 * @avalon.dependency key="executor" type="org.codehaus.plj.Executor"
+//	 * @avalon.dependency key="triggerexecutor" type="org.codehaus.plj.TriggerExecutor" optional="true"
+//	 * @avalon.dependency key="jta-adapter" type="org.codehaus.plj.tools.transactions.JTAAdapter" optional="true"
 //	 * 
-//	 * @dna.dependency key="channel" type="org.pgj.Channel"
-//	 * @dna.dependency key="executor" type="org.pgj.Executor"
-//	 * @dna.dependency key="triggerexecutor" type="org.pgj.TriggerExecutor" optional="true"
-//	 * @dna.dependency key="jta-adapter" type="org.pgj.tools.transactions.JTAAdapter" optional="true"
+//	 * @dna.dependency key="channel" type="org.codehaus.plj.Channel"
+//	 * @dna.dependency key="executor" type="org.codehaus.plj.Executor"
+//	 * @dna.dependency key="triggerexecutor" type="org.codehaus.plj.TriggerExecutor" optional="true"
+//	 * @dna.dependency key="jta-adapter" type="org.codehaus.plj.tools.transactions.JTAAdapter" optional="true"
 //	 * 
 //	 */
 //	public void service(ServiceManager arg0) throws ServiceException {

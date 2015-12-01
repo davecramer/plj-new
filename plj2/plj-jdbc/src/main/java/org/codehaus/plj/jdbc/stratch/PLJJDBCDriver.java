@@ -4,15 +4,12 @@
 
 package org.codehaus.plj.jdbc.stratch;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.DriverPropertyInfo;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
- * Embeded JDBC driver for PGJ to communicat with the database backend without
+ * Embeded JDBC driver for codehaus.plj to communicat with the database backend without
  * creating new connection or transaction.
  * WARNING: This driver is for developement purposes only.
  * 
@@ -83,4 +80,7 @@ public class PLJJDBCDriver implements Driver {
 		return false;
 	}
 
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		return null;
+	}
 }

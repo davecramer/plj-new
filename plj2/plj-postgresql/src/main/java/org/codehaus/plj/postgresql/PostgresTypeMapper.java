@@ -17,10 +17,10 @@ import org.codehaus.plj.typemapping.TypeMapper;
  * @author Laszlo Hornyak
  * 
  * @avalon.component name="postgre-typemapper" lifestyle="singleton"
- * @avalon.service type="org.pgj.typemapping.TypeMapper"
+ * @avalon.service type="org.codehaus.plj.typemapping.TypeMapper"
  * 
  * @dna.component name="postgre-typemapper"
- * @dna.service type="org.pgj.typemapping.TypeMapper"
+ * @dna.service type="org.codehaus.plj.typemapping.TypeMapper"
  * 
  */
 public class PostgresTypeMapper
@@ -43,7 +43,7 @@ public class PostgresTypeMapper
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.TypeMapper#map(byte[], java.lang.String)
+	 * @see org.codehaus.plj.typemapping.TypeMapper#map(byte[], java.lang.String)
 	 */
 	public Field map(byte[] raw_data, String type) throws MappingException {
 		try {
@@ -194,7 +194,7 @@ public class PostgresTypeMapper
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.TypeMapper#getRDBMSTypeFor(java.lang.Class)
+	 * @see org.codehaus.plj.typemapping.TypeMapper#getRDBMSTypeFor(java.lang.Class)
 	 */
 	public String getRDBMSTypeFor(Class cl) throws MappingException {
 		String typ = (String) typeBackMap.get(cl.getName());
@@ -204,7 +204,7 @@ public class PostgresTypeMapper
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.TypeMapper#createResult(java.lang.Object, java.lang.String, boolean)
+	 * @see org.codehaus.plj.typemapping.TypeMapper#createResult(java.lang.Object, java.lang.String, boolean)
 	 */
 	public Result createResult(Object obj, String expect, boolean strict)
 			throws MappingException {
@@ -239,7 +239,7 @@ public class PostgresTypeMapper
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.TypeMapper#getClassMap()
+	 * @see org.codehaus.plj.typemapping.TypeMapper#getClassMap()
 	 */
 	public Map getClassMap() {
 		return (Map)typeBackMap.clone();

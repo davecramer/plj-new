@@ -31,12 +31,12 @@ import org.codehaus.plj.utils.classloaders.PLJClassLoader;
  * @author Laszlo Hornyak
  * 
  * @avalon.component name="java-executor"
- * @avalon.service type="org.pgj.Executor"
- * @avalon.service type="org.pgj.TriggerExecutor"
+ * @avalon.service type="org.codehaus.plj.Executor"
+ * @avalon.service type="org.codehaus.plj.TriggerExecutor"
  * 
  * @dna.component
- * @dna.service type="org.pgj.Executor"
- * @dna.service type="org.pgj.TriggerExecutor"
+ * @dna.service type="org.codehaus.plj.Executor"
+ * @dna.service type="org.codehaus.plj.TriggerExecutor"
  * 
  */
 public class JavaExecutor extends ClassLoader
@@ -60,7 +60,7 @@ public class JavaExecutor extends ClassLoader
 
 	private MethodFinder methodFinder = null;
 
-	public static final String FN_UTILITIES_CLASS = "org.pgj.jexec.Utils";
+	public static final String FN_UTILITIES_CLASS = "org.codehaus.plj.jexec.Utils";
 
 //	/** A block that helps configuring JDBC. */
 //	private JDBCConfigurator jdbcConfigurator = null;
@@ -140,7 +140,7 @@ public class JavaExecutor extends ClassLoader
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.TriggerExecutor#executeTrigger(org.pgj.messages.TriggerCallRequest)
+	 * @see org.codehaus.plj.TriggerExecutor#executeTrigger(org.codehaus.plj.messages.TriggerCallRequest)
 	 */
 	public Message executeTrigger(TriggerCallRequest trigger) {
 		try {
@@ -170,7 +170,7 @@ public class JavaExecutor extends ClassLoader
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Executor#initClientSession(org.pgj.Client)
+	 * @see org.codehaus.plj.Executor#initClientSession(org.codehaus.plj.Client)
 	 */
 	public void initClientSession(Client sessionClient) {
 		/*
@@ -185,7 +185,7 @@ public class JavaExecutor extends ClassLoader
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Executor#destroyClientSession(org.pgj.Client)
+	 * @see org.codehaus.plj.Executor#destroyClientSession(org.codehaus.plj.Client)
 	 */
 	public void destroyClientSession(Client sessionClient) {
 		ClientUtils.setClientforThread(null);

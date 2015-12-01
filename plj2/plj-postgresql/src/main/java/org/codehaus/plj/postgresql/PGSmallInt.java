@@ -23,7 +23,7 @@ public class PGSmallInt extends AbstractPGField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.typemapping.postgres.AbstractPGField#backMap(java.lang.Object)
+	 * @see org.codehaus.plj.typemapping.postgres.AbstractPGField#backMap(java.lang.Object)
 	 */
 	protected void backMap(Object obj) throws MappingException {
 
@@ -51,7 +51,7 @@ public class PGSmallInt extends AbstractPGField {
 	}
 
 	/**
-	 * @see org.pgj.typemapping.Field#getJavaClasses()
+	 * @see org.codehaus.plj.typemapping.Field#getJavaClasses()
 	 * 
 	 * @todo return classes or classes.clone()? (speed or security?)
 	 */
@@ -63,7 +63,7 @@ public class PGSmallInt extends AbstractPGField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.typemapping.Field#getPreferredClass()
+	 * @see org.codehaus.plj.typemapping.Field#getPreferredClass()
 	 */
 	public Class getPreferredClass() {
 		return Integer.class;
@@ -72,7 +72,7 @@ public class PGSmallInt extends AbstractPGField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.typemapping.Field#get(java.lang.Class)
+	 * @see org.codehaus.plj.typemapping.Field#get(java.lang.Class)
 	 */
 	public Object get(Class clazz) throws MappingException {
 		// TODO Auto-generated method stub
@@ -88,7 +88,7 @@ public class PGSmallInt extends AbstractPGField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.typemapping.Field#defaultGet()
+	 * @see org.codehaus.plj.typemapping.Field#defaultGet()
 	 */
 	public Object defaultGet() throws MappingException {
 		byte[] b = new byte[4];
@@ -101,7 +101,7 @@ public class PGSmallInt extends AbstractPGField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.typemapping.Field#rdbmsType()
+	 * @see org.codehaus.plj.typemapping.Field#rdbmsType()
 	 */
 	public String rdbmsType() {
 		return "int4";

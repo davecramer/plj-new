@@ -9,7 +9,7 @@ import org.codehaus.plj.Channel;
 import org.codehaus.plj.Client;
 import org.codehaus.plj.CommunicationException;
 import org.codehaus.plj.ExecutionCancelException;
-import org.codehaus.plj.JTAAdapter;
+import org.codehaus.plj.transactions.JTAAdapter;
 import org.codehaus.plj.Runner;
 import org.codehaus.plj.TriggerExecutor;
 import org.codehaus.plj.messages.CallRequest;
@@ -65,7 +65,7 @@ public class ChannelWrapper implements Channel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Channel#getConnection(int)
+	 * @see org.codehaus.plj.Channel#getConnection(int)
 	 */
 	public Client getConnection(int timeout) {
 		logger
@@ -74,7 +74,7 @@ public class ChannelWrapper implements Channel {
 	}
 
 	/**
-	 * @see org.pgj.Channel#receiveFromRDBMS(org.pgj.Client)
+	 * @see org.codehaus.plj.Channel#receiveFromRDBMS(org.codehaus.plj.Client)
 	 * 
 	 * Receives a message from the RDBMS and fires action if needed, such as
 	 * executes a call or trigger, handles transaction.
@@ -129,7 +129,7 @@ public class ChannelWrapper implements Channel {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.pgj.Channel#sendToRDBMS(org.pgj.messages.Message)
+	 * @see org.codehaus.plj.Channel#sendToRDBMS(org.codehaus.plj.messages.Message)
 	 */
 	public void sendToRDBMS(Message msg) throws CommunicationException, MappingException {
 		msg.setClient(clientWrapper.getRealClient());

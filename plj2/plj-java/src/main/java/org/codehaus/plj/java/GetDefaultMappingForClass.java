@@ -25,14 +25,14 @@ public class GetDefaultMappingForClass extends BasicPrivilegedJSProc {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.jexec.PrivilegedJSProc#getName()
+	 * @see org.codehaus.plj.jexec.PrivilegedJSProc#getName()
 	 */
 	public String getName() {
 		return "default_mapping";
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.jexec.PrivilegedJSProc#perform(org.pgj.messages.CallRequest)
+	 * @see org.codehaus.plj.jexec.PrivilegedJSProc#perform(org.codehaus.plj.messages.CallRequest)
 	 */
 	public Object perform(CallRequest call) throws Exception {
 		Client cl =  call.getClient();

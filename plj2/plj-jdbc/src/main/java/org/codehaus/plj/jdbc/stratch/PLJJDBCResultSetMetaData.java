@@ -195,4 +195,11 @@ public class PLJJDBCResultSetMetaData implements ResultSetMetaData {
 		return null;
 	}
 
+	public <T> T unwrap(Class<T> iface) throws SQLException {
+		return null;
+	}
+
+	public boolean isWrapperFor(Class<?> iface) throws SQLException {
+		return false;
+	}
 }

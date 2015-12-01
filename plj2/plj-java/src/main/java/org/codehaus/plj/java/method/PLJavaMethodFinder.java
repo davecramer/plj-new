@@ -15,10 +15,10 @@ import org.postgresql.pljava.TriggerData;
  * PL/Java method finder, it has it's own special trigger api.
  * 
  * @avalon.component name="method-finder"
- * @avalon.service type="org.pgj.tools.methodfinder.MethodFinder"
+ * @avalon.service type="org.codehaus.plj.tools.methodfinder.MethodFinder"
  * 
  * @dna.component
- * @dna.service type="org.pgj.tools.methodfinder.MethodFinder"
+ * @dna.service type="org.codehaus.plj.tools.methodfinder.MethodFinder"
  * 
  * @author Laszlo Hornyak
  */

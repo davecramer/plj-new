@@ -13,7 +13,7 @@ import org.codehaus.plj.typemapping.MappingException;
 public class PGBigInt extends AbstractPGField {
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.postgres.AbstractPGField#backMap(java.lang.Object)
+	 * @see org.codehaus.plj.typemapping.postgres.AbstractPGField#backMap(java.lang.Object)
 	 */
 	protected void backMap(Object obj) throws MappingException {
 		if(!(obj instanceof Long))
@@ -39,21 +39,21 @@ public class PGBigInt extends AbstractPGField {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.Field#getJavaClasses()
+	 * @see org.codehaus.plj.typemapping.Field#getJavaClasses()
 	 */
 	public Class[] getJavaClasses() {
 		return new Class[]{Long.class};
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.Field#getPreferredClass()
+	 * @see org.codehaus.plj.typemapping.Field#getPreferredClass()
 	 */
 	public Class getPreferredClass() {
 		return Long.class;
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.Field#get(java.lang.Class)
+	 * @see org.codehaus.plj.typemapping.Field#get(java.lang.Class)
 	 */
 	public Object get(Class clazz) throws MappingException {
 		if("java.lang.Long".equals(clazz.getName()))
@@ -69,14 +69,14 @@ public class PGBigInt extends AbstractPGField {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.Field#defaultGet()
+	 * @see org.codehaus.plj.typemapping.Field#defaultGet()
 	 */
 	public Object defaultGet() throws MappingException {
 		return getAsLong();
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.typemapping.Field#rdbmsType()
+	 * @see org.codehaus.plj.typemapping.Field#rdbmsType()
 	 */
 	public String rdbmsType() {
 		return "int8";

@@ -21,10 +21,10 @@ import org.codehaus.plj.typemapping.MappingException;
  * Default method finder.
  * 
  * @avalon.component name="method-finder"
- * @avalon.service type="org.pgj.tools.methodfinder.MethodFinder"
+ * @avalon.service type="org.codehaus.plj.tools.methodfinder.MethodFinder"
  * 
  * @dna.component
- * @dna.service type="org.pgj.tools.methodfinder.MethodFinder"
+ * @dna.service type="org.codehaus.plj.tools.methodfinder.MethodFinder"
  * 
  * @author Laszlo Hornyak
  */
@@ -36,7 +36,7 @@ public class DefaultMethodFinder
 	private TupleMapper tupleMapper;
 
 	/* (non-Javadoc)
-	 * @see org.pgj.tools.methodfinder.MethodFinder#findMethod(org.pgj.messages.AbstractCall, java.lang.Class)
+	 * @see org.codehaus.plj.tools.methodfinder.MethodFinder#findMethod(org.codehaus.plj.messages.AbstractCall, java.lang.Class)
 	 */
 	public Method findMethod(AbstractCall call, Class clazz)
 			throws MappingException, NoSuchMethodException {
@@ -106,7 +106,7 @@ public class DefaultMethodFinder
 	}
 
 	/* (non-Javadoc)
-	 * @see org.pgj.tools.methodfinder.MethodFinder#createParameters(org.pgj.messages.AbstractCall, java.lang.reflect.Method)
+	 * @see org.codehaus.plj.tools.methodfinder.MethodFinder#createParameters(org.codehaus.plj.messages.AbstractCall, java.lang.reflect.Method)
 	 */
 	public Object[] createParameters(AbstractCall call, Method method)
 			throws MappingException {
