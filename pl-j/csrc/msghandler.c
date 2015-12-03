@@ -15,6 +15,9 @@
 #include "plpgj_messages.h"
 #include "lib/stringinfo.h"
 #include "executor/spi_priv.h"
+#include "utils/syscache.h"
+#include "catalog/pg_type.h"
+#include "utils/datum.h"
 
 #include "memdebug.h"
 
@@ -27,7 +30,7 @@ message handle_invalid_message(sql_msg msg) {
 }
 
 message handle_statement_message(sql_msg msg) {
-	elog(DEBUG1, "[plj core] runing statement: %s", ((sql_msg_statement) msg)->statement);
+	elog(DEBUG1, "[plj core] running statement: %s", ((sql_msg_statement) msg)->statement);
 	PG_TRY();
 		SPI_exec(((sql_msg_statement) msg)->statement, 0);
 		plpgj_utl_sendint(SPI_processed);
@@ -72,7 +75,7 @@ message handle_fetch_message(sql_msg msg) {
 	res_tuptable = SPI_tuptable;
 	SPI_tuptable = NULL;
 
-	if(SPI_processed < 0){
+	if(SPI_processed == 0){
 		plpgj_utl_senderror("Not processed");
 		return NULL;
 	}
@@ -83,7 +86,9 @@ message handle_fetch_message(sql_msg msg) {
 	result -> cols = res_tuptable -> tupdesc -> natts;
 	result -> rows = SPI_processed;
 	result -> types = palloc(result -> cols * sizeof(char*));
-	for(j = 0; j < result -> cols; j++){
+
+	for(j = 0; j < result -> cols; j++)
+	{
 		HeapTuple typtup;
 		Form_pg_type typstr;
 		typtup = SearchSysCache(TYPEOID,res_tuptable -> tupdesc -> attrs[j] -> atttypid, 0,0,0);
@@ -175,6 +180,7 @@ message handle_prepare_message(sql_msg msg) {
 	sql_msg_prepare prep;
 	int i;
 	TypeName *typnam;
+	Type typetup;
 	void *plan;
 	int planid;
 
@@ -182,7 +188,18 @@ message handle_prepare_message(sql_msg msg) {
 	argtypes = prep -> ntypes == 0 ? NULL : palloc(prep -> ntypes * sizeof(Oid) );
 	for(i = 0; i < prep -> ntypes; i++) {
 		typnam = makeTypeName( prep -> types[i] );
-		argtypes[i] = LookupTypeName(typnam);
+		typetup = LookupTypeName(NULL, typnam, NULL);
+		if (typetup)
+		{
+			argtypes[i] = typeTypeId(typetup);
+			ReleaseSysCache(typetup);
+		}
+		else
+		{
+			argtypes[i] = InvalidOid;
+		}
+
+
 	}
 
 	elog(DEBUG1, "[plj core] SQL_TYPE_PREPARE");
@@ -232,8 +249,7 @@ message handle_pexecute_message(sql_msg msg){
 
 			nulls[i] = ' ';
 			typnam = makeTypeName(sql -> params[i].type );
-			typoid = LookupTypeName(typnam);
-			typtup = SearchSysCache(TYPEOID, typoid, 0, 0, 0);
+			typtup = LookupTypeName(NULL, typnam, NULL);
 			typstr = (Form_pg_type)GETSTRUCT(typtup);
 			ReleaseSysCache(typtup);
 			
@@ -305,7 +321,7 @@ message handle_pexecute_message(sql_msg msg){
 			_SPI_plan* pln;
 			elog(DEBUG1, "[plj core - plan exec] error at execution.");
 			pln = (_SPI_plan*) plantable[sql -> planid];
-			elog(DEBUG1, "%s",  pln -> query );
+			/*elog(DEBUG1, "%s",  pln -> query );*/
 			handle_exception();
 		PG_END_TRY();
 	}

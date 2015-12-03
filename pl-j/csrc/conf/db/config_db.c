@@ -1,4 +1,4 @@
-
+#include "postgres.h"
 #include "module_config.h"
 #include "executor/spi.h"
 //#include "utils/elog.h"

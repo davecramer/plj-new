@@ -13,11 +13,13 @@
 #include "plpgj_message_fns.h"
 
 #include "utils/palloc.h"
+#include "utils/syscache.h"
+#include "utils/datum.h"
 #include "catalog/pg_type.h"
+#include "catalog/pg_proc.h"
 
 /* #include "utils/elog.h" */
 #include "pljelog.h"
-#include "utils/datum.h"
 #include "commands/trigger.h"
 #include "fmgr.h"
 #include "executor/spi.h"
@@ -359,8 +361,11 @@ plpgj_create_trigger_call(PG_FUNCTION_ARGS)
 	procStruct = glpgj_getproc(fcinfo);
 	funcoid = fcinfo->flinfo->fn_oid;
 	proctup = SearchSysCache(PROCOID, ObjectIdGetDatum(funcoid), 0, 0, 0);
-	elog(DEBUG1, "[call maker] geting function description");
-#if (PG_MAJOR_VERSION == 7)
+	elog(DEBUG1, "[call maker] getting function description");
+
+	/*TODO this is broken */
+	PGFunction textout;
+	#if (PG_MAJOR_VERSION == 7)
 
 	elog(DEBUG1, "[call maker] 7.4 spec");
 	func_src =
@@ -413,7 +418,7 @@ plpgj_create_call(PG_FUNCTION_ARGS)
 	funcoid = fcinfo->flinfo->fn_oid;
 	proctup = SearchSysCache(PROCOID, ObjectIdGetDatum(funcoid), 0, 0, 0);
 	procstruct = (Form_pg_proc) GETSTRUCT(proctup);
-
+	PGFunction textout;
 	elog(DEBUG1, "[call maker] geting function description");
 #if (PG_MAJOR_VERSION == 7)
 
@@ -462,7 +467,7 @@ plpgj_create_call(PG_FUNCTION_ARGS)
 
 		typeTup =
 			SearchSysCache(TYPEOID,
-						   ObjectIdGetDatum(procstruct->proargtypes[i]), 0,
+						   ObjectIdGetDatum(procstruct->proargtypes.values[i]), 0,
 						   0, 0);
 		if (!HeapTupleIsValid(typeTup)){
 			pljlogging_error = 1;

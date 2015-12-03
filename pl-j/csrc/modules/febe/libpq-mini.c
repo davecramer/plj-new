@@ -1,3 +1,4 @@
+#include "postgres.h"
 #include "libpq-mini.h"
 #include "febe-config.h"
 

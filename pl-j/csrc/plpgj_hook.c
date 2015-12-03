@@ -23,11 +23,13 @@
 
 #include "utils/palloc.h"
 #include "utils/memutils.h"
+#include "utils/syscache.h"
 #include "access/xact.h"
 #include "pljelog.h"
 #include "plantable.h"
 #include "envstack.h"
 #include <string.h>
+#include "catalog/pg_type.h"
 
 #include "plpgj_hook.h"
 
@@ -163,7 +165,7 @@ plpgj_call_hook(PG_FUNCTION_ARGS)
 
 	if (!plpgj_channel_initialized())
 	{
-		pljelog(DEBUG1, "initing channel");
+		pljelog(DEBUG1, "initializing channel");
 		plpgj_channel_initialize();
 	}
 
@@ -198,10 +200,10 @@ plpgj_call_hook(PG_FUNCTION_ARGS)
 
 		MemoryContextSwitchTo(messageContext);
 		
-		pljelog(DEBUG1, "waiting ansver.");
+		pljelog(DEBUG1, "waiting answer.");
 		ansver = plpgj_channel_receive();
 		message_type = plpgj_message_type(ansver);
-		pljelog(DEBUG1, "ansver of type: %d", message_type);
+		pljelog(DEBUG1, "answer of type: %d", message_type);
 		switch (message_type)
 		{
 			case MT_RESULT:
@@ -270,13 +272,12 @@ plpgj_call_hook(PG_FUNCTION_ARGS)
 
 				pljelog(DEBUG1,"1");
 				typeName = makeTypeName(res->types[0]);
-				typeOid = typenameTypeId(typeName);
-				typetup = SearchSysCache(TYPEOID, typeOid, 0, 0, 0);
+				typetup = LookupTypeName(NULL, typeName, NULL);
 				if (!HeapTupleIsValid(typetup)){
 					MemoryContextSwitchTo(oldContext);
 					MemoryContextDelete(messageContext);
 					elog(FATAL, "[plj - core] Invalid heaptuple at result return");
-					//This won`t run
+					//This won't run
 					PG_RETURN_NULL();
 				}
 
@@ -284,7 +285,7 @@ plpgj_call_hook(PG_FUNCTION_ARGS)
 				ReleaseSysCache(typetup);
 
 				oldctx = CurrentMemoryContext;
-				MemoryContextSwitchTo(QueryContext);
+				MemoryContextSwitchTo(messageContext);
 
 				rawString = SPI_palloc(sizeof(StringInfoData));
 				initStringInfo(rawString);
@@ -389,8 +390,7 @@ plpgj_call_hook(PG_FUNCTION_ARGS)
 					}
 
 					typnam = makeTypeName(res->_tuple[i]->type);
-					typoid = LookupTypeName(typnam);
-					typtup = SearchSysCache(TYPEOID, typoid, 0, 0, 0);
+					typtup = LookupTypeName(NULL, typnam, NULL);
 					typ = (Form_pg_type) GETSTRUCT(typtup);
 					ReleaseSysCache(typtup);
 
@@ -574,8 +574,7 @@ void plpgj_utl_sendstr(const char* str) {
 					StringInfo      rawString;
 					
 					int4nam = makeTypeName("varchar");
-					int4oid = LookupTypeName(int4nam);
-					int4htp = SearchSysCache(TYPEOID, int4oid, 0, 0, 0);
+					int4htp = LookupTypeName(NULL, int4nam, NULL);
 					int4typ = (Form_pg_type)GETSTRUCT(int4htp);
 					ReleaseSysCache(int4htp);
 
@@ -610,8 +609,7 @@ void plpgj_utl_sendint(int i) {
 					Datum d;
 					
 					int4nam = makeTypeName("int4");
-					int4oid = LookupTypeName(int4nam);
-					int4htp = SearchSysCache(TYPEOID, int4oid, 0, 0, 0);
+					int4htp = LookupTypeName(NULL, int4nam, NULL);
 					int4typ = (Form_pg_type)GETSTRUCT(int4htp);
 					ReleaseSysCache(int4htp);
 
@@ -643,7 +641,7 @@ typedef struct plj_envstack_struct {
 } *plj_envstack;
 
 plj_envstack envstack = NULL;
-sigjmp_buf *PG_exception_stack = NULL;
+//sigjmp_buf *PG_exception_stack = NULL;
 
 
 void envstack_push(void) {

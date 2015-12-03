@@ -1,7 +1,10 @@
+#include "postgres.h"
+#include "c.h"
 #include "executor/spi.h"
 #include "pljelog.h"
-#include <stdlib.h>
 #include "plantable.h"
+#include "catalog/pg_type.h"
+
 
 void** plantable;
 int plantable_size = -1;
